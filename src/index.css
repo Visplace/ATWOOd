@@ -20,6 +20,20 @@ body {
   overflow: hidden;
 }
 
+.chrome-text {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #d9d3e6 25%,
+    #948aab 50%,
+    #ece8f4 75%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .liquid-glass::before {
   content: '';
   position: absolute;
