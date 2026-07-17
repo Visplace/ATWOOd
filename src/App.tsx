@@ -1,187 +1,50 @@
-import { useState } from 'react'
-import { Anvil, CircleUserRound, Compass, Menu, ShieldCheck, X } from 'lucide-react'
-
-const NAV_LINKS = [
-  { label: 'Home', href: '#' },
-  { label: 'The Craft', href: '#pillars' },
-  { label: 'The Land', href: '#' },
-]
-
-const PILLARS = [
-  {
-    icon: Compass,
-    title: 'True North',
-    description: 'No trend-chasing. Just a fixed point, and the discipline to hold it.',
-  },
-  {
-    icon: Anvil,
-    title: 'Built By Hand',
-    description: 'Every detail shaped with intent, tested against real weather and real ground.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Made To Last',
-    description: 'Engineered for decades, not seasons.',
-  },
-]
-
-function Logo({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 256 256" fill="white" className={className}>
-      <path d="M 128 128 C 198.692 128 256 185.308 256 256 L 151.883 256 C 149.812 220.307 120.213 192 84 192 C 47.787 192 18.188 220.307 16.117 256 L 0 256 C 0 185.308 57.308 128 128 128 Z M 104.117 0 C 106.188 35.694 135.787 64 172 64 C 208.213 64 237.812 35.694 239.883 0 L 256 0 C 256 70.692 198.692 128 128 128 C 57.308 128 0 70.692 0 0 Z" />
-    </svg>
-  )
-}
+import { Music2 } from 'lucide-react'
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
-
   return (
-    <div className="w-full bg-[#07030d]">
-      <div className="relative h-screen w-full overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1c0d33] via-[#150a26] to-[#07030d]" />
-        <div className="pointer-events-none absolute -left-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-purple-700/25 blur-[120px]" />
-        <div className="pointer-events-none absolute -right-32 top-0 h-[26rem] w-[26rem] rounded-full bg-violet-500/20 blur-[120px]" />
+    <div className="relative h-screen w-full overflow-hidden bg-[#050302]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1a1008] via-[#120b06] to-[#050302]" />
+      <div className="pointer-events-none absolute -left-40 top-1/4 h-[32rem] w-[32rem] animate-breathe rounded-full bg-amber-700/15 blur-[140px]" />
+      <div
+        className="pointer-events-none absolute -right-32 bottom-0 h-[28rem] w-[28rem] animate-breathe rounded-full bg-orange-500/10 blur-[160px]"
+        style={{ animationDelay: '3s' }}
+      />
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 animate-breathe rounded-full bg-amber-400/10 blur-[180px]"
+        style={{ animationDelay: '1.5s' }}
+      />
 
-        <div className="relative z-20 flex items-start justify-between px-5 pt-6 sm:px-8 sm:pt-8 md:px-16 lg:px-20">
-          <Logo className="h-8 w-8 md:h-9 md:w-9" />
-
-          <nav className="liquid-glass hidden items-center gap-8 rounded-full px-8 py-3 md:flex">
-            {NAV_LINKS.map((link, i) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`text-sm font-medium transition-opacity ${
-                  i === 0 ? 'text-white' : 'text-white/70 hover:opacity-100'
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="liquid-glass hidden h-10 w-10 items-center justify-center rounded-full md:flex">
-            <CircleUserRound className="h-5 w-5 text-white/80" strokeWidth={1.5} />
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setMenuOpen((open) => !open)}
-            className="liquid-glass relative z-50 flex h-10 w-10 items-center justify-center rounded-full md:hidden"
-            aria-label="Toggle menu"
-          >
-            <Menu
-              className={`absolute h-5 w-5 text-white transition-all duration-300 ${
-                menuOpen ? 'rotate-90 scale-0 opacity-0' : 'rotate-0 scale-100 opacity-100'
-              }`}
-            />
-            <X
-              className={`absolute h-5 w-5 text-white transition-all duration-300 ${
-                menuOpen ? 'rotate-0 scale-100 opacity-100' : '-rotate-90 scale-0 opacity-0'
-              }`}
-            />
-          </button>
+      <div className="relative z-10 flex h-full flex-col items-center justify-between px-5 py-10 text-center sm:px-8 sm:py-12 md:py-16">
+        <div className="liquid-glass inline-flex items-center gap-2 rounded-full px-4 py-1.5">
+          <Music2 className="h-3.5 w-3.5 text-[#f5ede1]/70" strokeWidth={1.5} />
+          <span className="text-xs font-medium uppercase tracking-[0.25em] text-[#f5ede1]/70">
+            Coming Soon
+          </span>
         </div>
 
-        <div
-          className={`fixed inset-0 z-10 flex flex-col items-center justify-center gap-8 bg-black/80 backdrop-blur-xl transition-opacity duration-500 ease-out md:hidden ${
-            menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
-          }`}
-        >
-          <div
-            className={`flex flex-col items-center gap-8 transition-transform duration-500 ease-out ${
-              menuOpen ? 'translate-y-0' : '-translate-y-8'
-            }`}
-          >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-2xl font-medium text-white"
-              >
-                {link.label}
-              </a>
-            ))}
+        <div className="flex max-w-xl flex-col items-center">
+          <img
+            src="/atwater-grove-logo.png"
+            alt="Atwater Grove"
+            className="w-72 sm:w-80 md:w-[26rem]"
+            style={{ filter: 'drop-shadow(0 0 50px rgba(245, 222, 179, 0.12))' }}
+          />
 
-            <div className="mt-4 flex flex-col items-center gap-3">
-              <div className="liquid-glass flex h-10 w-10 items-center justify-center rounded-full">
-                <CircleUserRound className="h-5 w-5 text-white/80" strokeWidth={1.5} />
-              </div>
-              <span className="text-sm font-light text-white/60">Account</span>
-            </div>
-          </div>
+          <p className="font-display mt-6 max-w-md text-xl italic leading-relaxed text-[#f5ede1]/80 sm:mt-8 sm:text-2xl">
+            A room for songs, sound, and the people who make them.
+          </p>
+          <p className="mt-3 text-sm font-light text-[#f5ede1]/50 sm:text-base">
+            Something is taking shape here.
+          </p>
         </div>
 
-        <div
-          className={`relative z-10 flex h-full flex-col justify-between transition-opacity duration-300 ${
-            menuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
-          }`}
-        >
-          <div className="px-5 sm:px-8 md:px-16 lg:px-20">
-            <div className="mt-14 max-w-2xl sm:mt-20 md:mt-28">
-              <span className="mb-5 block text-xs font-medium uppercase tracking-[0.3em] text-white/50 sm:mb-6 sm:text-sm">
-                Atwood Grove
-              </span>
-
-              <h1
-                className="text-4xl font-normal leading-[1.05] text-white sm:text-5xl md:text-6xl lg:text-7xl"
-                style={{ letterSpacing: '-0.05em' }}
-              >
-                Built For
-                <br />
-                <span className="chrome-text">THE LONG RIDE</span>
-              </h1>
-
-              <p className="mt-4 text-sm font-light text-white/70 sm:mt-5 sm:text-base md:text-lg">
-                Precision-forged for those who ride their own trail — sharp tools, sharp minds,
-                zero shortcuts.
-              </p>
-
-              <button
-                type="button"
-                className="liquid-glass mt-6 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 hover:bg-white/10 sm:mt-8 sm:px-7 sm:py-3.5"
-              >
-                Enter The Grove
-              </button>
-            </div>
-          </div>
+        <div className="flex flex-col items-center gap-3 text-[#f5ede1]/40">
+          <div className="h-px w-16 bg-[#f5ede1]/20" />
+          <span className="text-xs font-light tracking-wide">
+            &copy; {new Date().getFullYear()} Atwater Grove — more soon.
+          </span>
         </div>
       </div>
-
-      <section
-        id="pillars"
-        className="relative w-full px-5 py-20 sm:px-8 sm:py-24 md:px-16 md:py-28 lg:px-20"
-      >
-        <div className="mx-auto h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-
-        <div className="mx-auto mt-16 max-w-6xl sm:mt-20">
-          <span className="block text-xs font-medium uppercase tracking-[0.3em] text-white/50 sm:text-sm">
-            What We Stand On
-          </span>
-          <h2
-            className="mt-4 text-3xl font-normal text-white sm:text-4xl md:text-5xl"
-            style={{ letterSpacing: '-0.03em' }}
-          >
-            Forged, Not Followed
-          </h2>
-
-          <div className="mt-12 grid grid-cols-1 gap-5 sm:mt-16 sm:grid-cols-3 sm:gap-6">
-            {PILLARS.map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="liquid-glass rounded-3xl p-6 transition duration-300 hover:bg-white/[0.03] sm:p-8"
-              >
-                <Icon className="h-6 w-6 text-white/80" strokeWidth={1.5} />
-                <h3 className="mt-5 text-lg font-medium text-white sm:text-xl">{title}</h3>
-                <p className="mt-2 text-sm font-light leading-relaxed text-white/60">
-                  {description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
