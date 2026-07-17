@@ -7,6 +7,22 @@
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: 'Instrument Serif', serif;
 }
 
 .liquid-glass {
@@ -20,15 +36,8 @@ body {
   overflow: hidden;
 }
 
-.chrome-text {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #d9d3e6 25%,
-    #948aab 50%,
-    #ece8f4 75%,
-    #ffffff 100%
-  );
+.warm-text {
+  background: linear-gradient(180deg, #fff7ec 0%, #f3d9b0 35%, #d8a86a 65%, #fff2df 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -42,15 +51,31 @@ body {
   padding: 1.4px;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.45) 0%,
-    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 244, 224, 0.45) 0%,
+    rgba(255, 244, 224, 0.15) 20%,
     transparent 40%,
     transparent 60%,
-    rgba(255, 255, 255, 0.15) 80%,
-    rgba(255, 255, 255, 0.45) 100%
+    rgba(255, 244, 224, 0.15) 80%,
+    rgba(255, 244, 224, 0.45) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 9s ease-in-out infinite;
 }
